@@ -12,7 +12,7 @@
 /.next/
 /out/
 /node_modules
-.bablerc
+.babelrc
 
 # production
 /build
