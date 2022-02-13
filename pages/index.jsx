@@ -1,82 +1,56 @@
-import Head from 'next/head'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { Nav } from '../components'
+
 
 export default function Home() {
+  const [searchData, setSearchData] = useState('')
+  const router = useRouter()
+
+  const search = (event) => {
+    event.preventDefault()
+
+    router.push(`/search/${searchData.replace(' ', '-')}`)
+    setSearchData('')
+    console.log(searchData)
+  }
+  
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <Nav />
+      <div className="bg-deep-1">
+        <div className="h-screen flex justify-center items-center space-x-10">
+          <img src="/python.png" alt="Image of Code" className='w-[30rem] h-[24rem] m-4 border border-ocean border-4'/>
+          <div className="flex flex-col justify-center items-center text-center">
+          <div className="h-[1rem]"></div>
+            <h1 className='text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-accent-1 to-comp-2 px-8 py-4 rounded-full'>
+              The Programming Mega-Library
+            </h1>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+            <p className="text-2xl font-extrabold text-accent-2">The All-in-One Coding Cheat-Sheet</p>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <div className="flex items-center mt-12 py-2 px-4 rounded-full bg-deep-3 space-x-4 border border-2 border-ocean">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-ocean" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <form onSubmit={ search }>
+                <input name='searchBox' value={ searchData } onChange={ (event) => setSearchData(event.target.value) } className='focus:outline-none bg-deep-3 text-ocean font-medium' type="text" placeholder='Search the Docs'/>
+              </form>
+            </div>
+            <div className="h-[6rem]"></div>
+          </div>
         </div>
-      </main>
+        <div className="mx-auto bg-forest-3 h-screen">
+          <div>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
-        </a>
-      </footer>
-    </div>
+          </div>
+        </div>
+        <div className="mx-auto h-screen">
+          <div>
+
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
